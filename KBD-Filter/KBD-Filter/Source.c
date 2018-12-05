@@ -4,28 +4,81 @@ typedef struct {
 	PDEVICE_OBJECT LowerKbdDevice;
 } DEVICE_EXTENSION, *PDEVICE_EXTENSION;
 
+
+typedef struct _KEYBOARD_INPUT_DATA {
+	USHORT UnitId;
+	USHORT MakeCode;
+	USHORT Flags;
+	USHORT Reserved;
+	ULONG  ExtraInformation;
+} KEYBOARD_INPUT_DATA, *PKEYBOARD_INPUT_DATA;
+
+
 PDEVICE_OBJECT KbdDevice = NULL;
+ULONG pendingkey = 0;
+
+
+//---------------------------------------------------------------------------------
+//-------------------------------- Functions --------------------------------------
 
 VOID DriverUnload(PDRIVER_OBJECT DriverObject)
 {
+	LARGE_INTEGER interval = { 0 };
+
 	PDEVICE_OBJECT DeviceObject = DriverObject->DeviceObject;
+	interval.QuadPart = -10 * 1000 * 1000;
 	IoDetachDevice( ((PDEVICE_EXTENSION)DeviceObject->DeviceExtension)->LowerKbdDevice );
+	
+	while (pendingkey) {
+		KeDelayExecutionThread(KernelMode, FALSE, &interval);
+	}
+
 	IoDeleteDevice(KbdDevice);
 	KdPrint(("unload Driver\r\n"));
 }
 
 
-NTSTATUS DispatchPass(PDEVICE_OBJECT DriverObject, PIRP Irp) {
-	DriverObject = NULL;
-	Irp = NULL;
-	return STATUS_SUCCESS;
+NTSTATUS DispatchPass(PDEVICE_OBJECT DeviceObject, PIRP Irp) 
+{
+	IoCopyCurrentIrpStackLocationToNext(Irp);
+	return IoCallDriver(((PDEVICE_EXTENSION)DeviceObject->DeviceExtension)->LowerKbdDevice, Irp); //pass key to lower driver
 }
 
 
-NTSTATUS DispatchRead(PDEVICE_OBJECT DriverObject, PIRP Irp) {
-	DriverObject = NULL;
-	Irp = NULL;
-	return STATUS_SUCCESS;
+NTSTATUS ReadComplete(PDEVICE_OBJECT DeviceObject, PIRP Irp, PVOID Context) 
+{
+	DeviceObject = NULL;
+	Context = NULL;
+
+	CHAR* keyflag[4] = { "KeyDown","KeyUp","E0","E1" };
+	PKEYBOARD_INPUT_DATA Keys = (PKEYBOARD_INPUT_DATA)Irp->AssociatedIrp.SystemBuffer;
+	int structnum = Irp->IoStatus.Information / sizeof(KEYBOARD_INPUT_DATA);
+	int i;
+
+	if (Irp->IoStatus.Status == STATUS_SUCCESS) {
+		for (i=0; i < structnum; i++) {
+			KdPrint(("the scan code is %x (%s)\n", Keys->MakeCode, keyflag[Keys->Flags]));
+		}
+	}
+
+	if (Irp->PendingReturned) {
+		IoMarkIrpPending(Irp);
+	}
+
+	pendingkey--;
+	return Irp->IoStatus.Status;
+}
+
+
+NTSTATUS DispatchRead(PDEVICE_OBJECT DeviceObject, PIRP Irp) 
+{	
+	IoCopyCurrentIrpStackLocationToNext(Irp);
+
+	IoSetCompletionRoutine(Irp, ReadComplete, NULL, TRUE, TRUE, TRUE); //executes ReadComplete when Irp is returned from device
+
+	pendingkey++;
+
+	return IoCallDriver(((PDEVICE_EXTENSION)DeviceObject->DeviceExtension)->LowerKbdDevice, Irp); //pass key to lower driver
 }
 
 
