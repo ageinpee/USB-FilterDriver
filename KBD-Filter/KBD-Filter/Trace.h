@@ -6,23 +6,31 @@ Module Name:
 
 Abstract:
 
-    Header file for the debug tracing related function defintions and macros.
+    This module contains the local type definitions for the
+    driver.
 
 Environment:
 
-    Kernel mode
+    Windows User-Mode Driver Framework 2
 
 --*/
 
 //
+// Device Interface GUID
+// 2d7b28c9-d6b5-4bd9-aa23-a4d0ae46b3cf
+//
+DEFINE_GUID(GUID_DEVINTERFACE_KBD-Filter,
+    0x2d7b28c9,0xd6b5,0x4bd9,0xaa,0x23,0xa4,0xd0,0xae,0x46,0xb3,0xcf);
+
+//
 // Define the tracing flags.
 //
-// Tracing GUID - c094a5da-0147-42ab-8586-18e957f976ad
+// Tracing GUID - 6d9a3914-eaac-4cce-b3ec-64f05e250d4f
 //
 
 #define WPP_CONTROL_GUIDS                                              \
     WPP_DEFINE_CONTROL_GUID(                                           \
-        KBDFilterTraceGuid, (c094a5da,0147,42ab,8586,18e957f976ad), \
+        MyDriver1TraceGuid, (6d9a3914,eaac,4cce,b3ec,64f05e250d4f), \
                                                                             \
         WPP_DEFINE_BIT(MYDRIVER_ALL_INFO)                              \
         WPP_DEFINE_BIT(TRACE_DRIVER)                                   \
@@ -42,21 +50,14 @@ Environment:
                
 #define WPP_LEVEL_FLAGS_ENABLED(lvl, flags) \
            (WPP_LEVEL_ENABLED(flags) && WPP_CONTROL(WPP_BIT_ ## flags).Level >= lvl)
-           
-//           
-// WPP orders static parameters before dynamic parameters. To support the Trace function
-// defined below which sets FLAGS=MYDRIVER_ALL_INFO, a custom macro must be defined to
-// reorder the arguments to what the .tpl configuration file expects.
-//
-#define WPP_RECORDER_FLAGS_LEVEL_ARGS(flags, lvl) WPP_RECORDER_LEVEL_FLAGS_ARGS(lvl, flags)
-#define WPP_RECORDER_FLAGS_LEVEL_FILTER(flags, lvl) WPP_RECORDER_LEVEL_FLAGS_FILTER(lvl, flags)
 
 //
 // This comment block is scanned by the trace preprocessor to define our
 // Trace function.
 //
 // begin_wpp config
-// FUNC Trace{FLAGS=MYDRIVER_ALL_INFO}(LEVEL, MSG, ...);
+// FUNC Trace{FLAG=MYDRIVER_ALL_INFO}(LEVEL, MSG, ...);
 // FUNC TraceEvents(LEVEL, FLAGS, MSG, ...);
 // end_wpp
 //
+

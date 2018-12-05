@@ -7,20 +7,16 @@ Module Name:
 Abstract:
 
    This file contains the device entry points and callbacks.
-    
+
 Environment:
 
-    Kernel-mode Driver Framework
+    User-mode Driver Framework 2
 
 --*/
 
 #include "driver.h"
 #include "device.tmh"
 
-#ifdef ALLOC_PRAGMA
-#pragma alloc_text (PAGE, KBDFilterCreateDevice)
-#pragma alloc_text (PAGE, KBDFilterEvtDevicePrepareHardware)
-#endif
 
 
 NTSTATUS
@@ -50,8 +46,6 @@ Return Value:
     PDEVICE_CONTEXT deviceContext;
     WDFDEVICE device;
     NTSTATUS status;
-
-    PAGED_CODE();
 
     WDF_PNPPOWER_EVENT_CALLBACKS_INIT(&pnpPowerCallbacks);
     pnpPowerCallbacks.EvtDevicePrepareHardware = KBDFilterEvtDevicePrepareHardware;
@@ -125,13 +119,10 @@ Return Value:
 {
     NTSTATUS status;
     PDEVICE_CONTEXT pDeviceContext;
-    WDF_USB_DEVICE_CREATE_CONFIG createParams;
     WDF_USB_DEVICE_SELECT_CONFIG_PARAMS configParams;
 
     UNREFERENCED_PARAMETER(ResourceList);
     UNREFERENCED_PARAMETER(ResourceListTranslated);
-
-    PAGED_CODE();
 
     TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_DRIVER, "%!FUNC! Entry");
 
@@ -151,21 +142,23 @@ Return Value:
     //
     if (pDeviceContext->UsbDevice == NULL) {
 
-        //
-        // Specifying a client contract version of 602 enables us to query for
-        // and use the new capabilities of the USB driver stack for Windows 8.
-        // It also implies that we conform to rules mentioned in MSDN
-        // documentation for WdfUsbTargetDeviceCreateWithParameters.
-        //
+#if UMDF_VERSION_MINOR >= 25
+        WDF_USB_DEVICE_CREATE_CONFIG createParams;
+
         WDF_USB_DEVICE_CREATE_CONFIG_INIT(&createParams,
-                                         USBD_CLIENT_CONTRACT_VERSION_602
-                                         );
+                                          USBD_CLIENT_CONTRACT_VERSION_602);
 
         status = WdfUsbTargetDeviceCreateWithParameters(Device,
                                                     &createParams,
                                                     WDF_NO_OBJECT_ATTRIBUTES,
                                                     &pDeviceContext->UsbDevice
                                                     );
+#else
+        status = WdfUsbTargetDeviceCreate(Device,
+                                          WDF_NO_OBJECT_ATTRIBUTES,
+                                          &pDeviceContext->UsbDevice
+                                          );
+#endif
 
         if (!NT_SUCCESS(status)) {
             TraceEvents(TRACE_LEVEL_ERROR, TRACE_DEVICE,
