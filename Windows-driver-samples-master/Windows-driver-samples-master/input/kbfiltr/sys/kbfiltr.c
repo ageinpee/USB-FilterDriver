@@ -812,60 +812,40 @@ Return Value:
 		KEYBOARD_INPUT_DATA data[20];
 		int endIndex = 2;
 
-
-		if (InputDataStart[i].MakeCode == 0x28 /*Ä*/) {
-			data[0] = InputDataStart[i];
-			data[1] = InputDataStart[i];
-			data[2] = InputDataStart[i + 1];
-			data[0].MakeCode = 0x1e;	//A
-			data[1].MakeCode = 0x12;	//E
-		}
-		else if (InputDataStart[i].MakeCode == 0x1d /*LCtrl*/){
+		if (InputDataStart[i].MakeCode == 0x1d /*LCtrl*/){
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//LShift
+			data[1] = InputDataStart[i + 1];
 		}
 		else if (InputDataStart[i].MakeCode == 0xe01d /*RCtrl*/) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x36;	//RShift
+			data[1] = InputDataStart[i + 1];
 		}
-		else if (InputDataStart[i].MakeCode == 0xe05b /*LWin*/) {
+		else if (InputDataStart[i].MakeCode == 0x5be0 /*LWin*/) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//LShift
+			data[1] = InputDataStart[i + 1];
 		}
-		else if (InputDataStart[i].MakeCode == 0xe05c /*RWin*/) {
+		else if (InputDataStart[i].MakeCode == 0x5ce0 /*RWin*/) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x36;	//RShift
+			data[1] = InputDataStart[i + 1];
 		}
 		else if (InputDataStart[i].MakeCode == 0x38 /*Alt*/) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//LShift
+			data[1] = InputDataStart[i + 1];
 		}
 		else if (InputDataStart[i].MakeCode == 0xe038 /*AltGr*/) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//RShift
+			data[1] = InputDataStart[i + 1];
 		}
 		else if (InputDataStart[i].MakeCode == 0x0f /*Tab*/) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//LShift
-		}
-		else if (InputDataStart[i].MakeCode == 0x0c /*ß*/) {
-			for (size_t k = 0; k < i; k++) {
-				//Check if Left or Right Shift was pressed before
-				if ((InputDataStart[k].MakeCode == 0x2a || InputDataStart[k].MakeCode == 0x36) && InputDataStart[k].Flags == 0) {
-					//Change nothing (resulting in a question mark)
-					data[0] = InputDataStart[i];
-					data[1] = InputDataStart[i + 1];
-					endIndex = 1;
-				}
-				else {
-					//Transform 'ß' to 'ss'
-					data[0] = InputDataStart[i];
-					data[1] = InputDataStart[i];
-					data[2] = InputDataStart[i + 1];
-					data[0].MakeCode = 0x1f;
-					data[1].MakeCode = 0x1f;
-				}
-			}
+			data[1] = InputDataStart[i + 1];
 		}
 		else {
 			//No Filtering
