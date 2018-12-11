@@ -11,8 +11,6 @@
 *.userprefs
 
 # Build results
-[Rr]elease/
-[Rr]eleases/
 x86/
 bld/
 [Bb]in/
