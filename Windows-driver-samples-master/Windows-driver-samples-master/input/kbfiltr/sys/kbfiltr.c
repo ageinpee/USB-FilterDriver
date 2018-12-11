@@ -812,37 +812,44 @@ Return Value:
 		KEYBOARD_INPUT_DATA data[20];
 		int endIndex = 2;
 
-		if (InputDataStart[i].MakeCode == 0x1d /*LCtrl*/){
+		if (InputDataStart[i].MakeCode == 0x1d /*LCtrl*/ && 
+			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)){
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//LShift
 			data[1] = InputDataStart[i + 1];
 		}
-		else if (InputDataStart[i].MakeCode == 0xe01d /*RCtrl*/) {
+		else if (InputDataStart[i].MakeCode == 0xe01d /*RCtrl*/ &&
+				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x36;	//RShift
 			data[1] = InputDataStart[i + 1];
 		}
-		else if (InputDataStart[i].MakeCode == 0x5be0 /*LWin*/) {
+		else if (InputDataStart[i].MakeCode == 0x5be0 /*LWin*/ &&
+				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//LShift
 			data[1] = InputDataStart[i + 1];
 		}
-		else if (InputDataStart[i].MakeCode == 0x5ce0 /*RWin*/) {
+		else if (InputDataStart[i].MakeCode == 0x5ce0 /*RWin*/ &&
+				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x36;	//RShift
 			data[1] = InputDataStart[i + 1];
 		}
-		else if (InputDataStart[i].MakeCode == 0x38 /*Alt*/) {
+		else if (InputDataStart[i].MakeCode == 0x38 /*Alt*/ &&
+				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//LShift
 			data[1] = InputDataStart[i + 1];
 		}
-		else if (InputDataStart[i].MakeCode == 0xe038 /*AltGr*/) {
+		else if (InputDataStart[i].MakeCode == 0xe038 /*AltGr*/ &&
+				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//RShift
 			data[1] = InputDataStart[i + 1];
 		}
-		else if (InputDataStart[i].MakeCode == 0x0f /*Tab*/) {
+		else if (InputDataStart[i].MakeCode == 0x0f /*Tab*/ &&
+				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//LShift
 			data[1] = InputDataStart[i + 1];
