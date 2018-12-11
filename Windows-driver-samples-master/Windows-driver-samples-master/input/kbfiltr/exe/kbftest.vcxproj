@@ -121,6 +121,7 @@
     <ClCompile>
       <ExceptionHandling>
       </ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
