@@ -812,6 +812,7 @@ Return Value:
 		KEYBOARD_INPUT_DATA data[20];
 		int endIndex = 2;
 
+
 		if (InputDataStart[i].MakeCode == 0x28 /*Ä*/) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i];
@@ -819,19 +820,8 @@ Return Value:
 			data[0].MakeCode = 0x1e;	//A
 			data[1].MakeCode = 0x12;	//E
 		}
-		else if (InputDataStart[i].MakeCode == 0x27 /*Ö*/) {
-			data[0] = InputDataStart[i];
-			data[1] = InputDataStart[i];
-			data[2] = InputDataStart[i + 1];
-			data[0].MakeCode = 0x18;	//O
-			data[1].MakeCode = 0x12;	//E
-		}
-		else if (InputDataStart[i].MakeCode == 0x1a /*Ü*/) {
-			data[0] = InputDataStart[i];
-			data[1] = InputDataStart[i];
-			data[2] = InputDataStart[i + 1];
-			data[0].MakeCode = 0x16;	//U
-			data[1].MakeCode = 0x12;	//E
+		else if (InputDataStart[i].MakeCode == 0x1e /*LCtrl*/){
+			data[0] = InputDataStart[i+1]; //next key
 		}
 		else if (InputDataStart[i].MakeCode == 0x0c /*ß*/) {
 			for (size_t k = 0; k < i; k++) {
