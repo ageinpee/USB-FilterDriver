@@ -812,25 +812,25 @@ Return Value:
 		KEYBOARD_INPUT_DATA data[2];
 		int endIndex = 2;
 
-		if (InputDataStart[i].MakeCode == 0x1d /*LCtrl*/ && 
+		if (InputDataStart[i].MakeCode == 0x1d00 /*LCtrl*/ && 
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)){
 			data[0] = InputDataStart[i];
-			data[0].MakeCode = 0x2a;	//LShift
+			data[0].MakeCode = 0x2a00;	//LShift
 			data[1] = InputDataStart[i + 1];
 		}
 		else if (InputDataStart[i].MakeCode == 0xe01d /*RCtrl*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
-			data[0].MakeCode = 0x36;	//RShift
+			data[0].MakeCode = 0x3600;	//RShift
 			data[1] = InputDataStart[i + 1];
 		}
-		else if (InputDataStart[i].MakeCode == 0x5be0 /*LWin*/ &&
+		else if (InputDataStart[i].MakeCode == 0xe0 + 0x5b /*LWin*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
-			data[0].MakeCode = 0x2a;	//LShift
+			data[0].MakeCode = 0x2a00;	//LShift
 			data[1] = InputDataStart[i + 1];
 		}
-		else if (InputDataStart[i].MakeCode == 0x5ce0 /*RWin*/ &&
+		else if (InputDataStart[i].MakeCode == 0xe0 + 0x5c /*RWin*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x36;	//RShift
