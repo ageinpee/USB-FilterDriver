@@ -816,28 +816,28 @@ Return Value:
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)){
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
-			data[0].MakeCode = 0x2a00;	//LShift
+			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("LCrtl Pressed"));
 		}
 		else if (InputDataStart[i].MakeCode == 0x1de0 /*RCtrl*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
-			data[0].MakeCode = 0x3600;	//RShift
+			data[0].MakeCode = 0x36;	//RShift
 			KdPrint(("RCrtl Pressed"));
 		}
 		else if (InputDataStart[i].MakeCode == 0x5be0 /*LWin*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
-			data[0].MakeCode = 0x2a00;	//LShift
+			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("LWin Pressed"));
 		}
 		else if (InputDataStart[i].MakeCode == 0xe05b /*maybe LWin too*/ &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
-			data[0].MakeCode = 0x2a00;	//LShift
+			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("LWin Pressed"));
 		}
 		else if (InputDataStart[i].MakeCode == 0x5ce0 /*RWin*/ &&
