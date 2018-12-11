@@ -820,8 +820,33 @@ Return Value:
 			data[0].MakeCode = 0x1e;	//A
 			data[1].MakeCode = 0x12;	//E
 		}
-		else if (InputDataStart[i].MakeCode == 0x1e /*LCtrl*/){
-			data[0] = InputDataStart[i+1]; //next key
+		else if (InputDataStart[i].MakeCode == 0x1d /*LCtrl*/){
+			data[0] = InputDataStart[i];
+			data[0].MakeCode = 0x2a;	//LShift
+		}
+		else if (InputDataStart[i].MakeCode == 0xe01d /*RCtrl*/) {
+			data[0] = InputDataStart[i];
+			data[0].MakeCode = 0x36;	//RShift
+		}
+		else if (InputDataStart[i].MakeCode == 0xe05b /*LWin*/) {
+			data[0] = InputDataStart[i];
+			data[0].MakeCode = 0x2a;	//LShift
+		}
+		else if (InputDataStart[i].MakeCode == 0xe05c /*RWin*/) {
+			data[0] = InputDataStart[i];
+			data[0].MakeCode = 0x36;	//RShift
+		}
+		else if (InputDataStart[i].MakeCode == 0x38 /*Alt*/) {
+			data[0] = InputDataStart[i];
+			data[0].MakeCode = 0x2a;	//LShift
+		}
+		else if (InputDataStart[i].MakeCode == 0xe038 /*AltGr*/) {
+			data[0] = InputDataStart[i];
+			data[0].MakeCode = 0x2a;	//RShift
+		}
+		else if (InputDataStart[i].MakeCode == 0x0f /*Tab*/) {
+			data[0] = InputDataStart[i];
+			data[0].MakeCode = 0x2a;	//LShift
 		}
 		else if (InputDataStart[i].MakeCode == 0x0c /*ß*/) {
 			for (size_t k = 0; k < i; k++) {
