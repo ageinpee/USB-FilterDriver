@@ -817,42 +817,49 @@ Return Value:
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a00;	//LShift
 			data[1] = InputDataStart[i + 1];
+			DbgPrint("LCrtl Pressed");
 		}
 		else if (InputDataStart[i].MakeCode == 0xe01d /*RCtrl*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x3600;	//RShift
 			data[1] = InputDataStart[i + 1];
+			DbgPrint("RCrtl Pressed");
 		}
 		else if (InputDataStart[i].MakeCode == 0xe0 + 0x5b /*LWin*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a00;	//LShift
 			data[1] = InputDataStart[i + 1];
+			DbgPrint("LWin Pressed");
 		}
 		else if (InputDataStart[i].MakeCode == 0xe0 + 0x5c /*RWin*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x36;	//RShift
 			data[1] = InputDataStart[i + 1];
+			DbgPrint("RWin Pressed");
 		}
 		else if (InputDataStart[i].MakeCode == 0x38 /*Alt*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//LShift
 			data[1] = InputDataStart[i + 1];
+			DbgPrint("Alt Pressed");
 		}
 		else if (InputDataStart[i].MakeCode == 0xe038 /*AltGr*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//RShift
 			data[1] = InputDataStart[i + 1];
+			DbgPrint("AltGr Pressed");
 		}
 		else if (InputDataStart[i].MakeCode == 0x0f /*Tab*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[0].MakeCode = 0x2a;	//LShift
 			data[1] = InputDataStart[i + 1];
+			DbgPrint("Tab Pressed");
 		}
 		else {
 			//No Filtering
