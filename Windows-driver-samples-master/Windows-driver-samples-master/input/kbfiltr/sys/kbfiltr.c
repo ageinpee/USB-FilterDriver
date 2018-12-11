@@ -812,31 +812,31 @@ Return Value:
 		KEYBOARD_INPUT_DATA data[20];
 		int endIndex = 2;
 
-		if (InputDataStart[i].MakeCode == 40 /*Ä*/) {
+		if (InputDataStart[i].MakeCode == 0x28 /*Ä*/) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i];
 			data[2] = InputDataStart[i + 1];
-			data[0].MakeCode = 30;	//A
-			data[1].MakeCode = 18;	//E
+			data[0].MakeCode = 0x1e;	//A
+			data[1].MakeCode = 0x12;	//E
 		}
-		else if (InputDataStart[i].MakeCode == 39 /*Ö*/) {
+		else if (InputDataStart[i].MakeCode == 0x27 /*Ö*/) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i];
 			data[2] = InputDataStart[i + 1];
-			data[0].MakeCode = 24;	//O
-			data[1].MakeCode = 18;	//E
+			data[0].MakeCode = 0x18;	//O
+			data[1].MakeCode = 0x12;	//E
 		}
-		else if (InputDataStart[i].MakeCode == 26 /*Ü*/) {
+		else if (InputDataStart[i].MakeCode == 0x1a /*Ü*/) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i];
 			data[2] = InputDataStart[i + 1];
-			data[0].MakeCode = 22;	//U
-			data[1].MakeCode = 18;	//E
+			data[0].MakeCode = 0x16;	//U
+			data[1].MakeCode = 0x12;	//E
 		}
-		else if (InputDataStart[i].MakeCode == 12 /*ß*/) {
+		else if (InputDataStart[i].MakeCode == 0x0c /*ß*/) {
 			for (size_t k = 0; k < i; k++) {
 				//Check if Left or Right Shift was pressed before
-				if ((InputDataStart[k].MakeCode == 42 || InputDataStart[k].MakeCode == 54) && InputDataStart[k].Flags == 0) {
+				if ((InputDataStart[k].MakeCode == 0x2a || InputDataStart[k].MakeCode == 0x36) && InputDataStart[k].Flags == 0) {
 					//Change nothing (resulting in a question mark)
 					data[0] = InputDataStart[i];
 					data[1] = InputDataStart[i + 1];
@@ -847,8 +847,8 @@ Return Value:
 					data[0] = InputDataStart[i];
 					data[1] = InputDataStart[i];
 					data[2] = InputDataStart[i + 1];
-					data[0].MakeCode = 31;
-					data[1].MakeCode = 31;
+					data[0].MakeCode = 0x1f;
+					data[1].MakeCode = 0x1f;
 				}
 			}
 		}
