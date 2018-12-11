@@ -861,8 +861,8 @@ Return Value:
 
 		(*(PSERVICE_CALLBACK_ROUTINE)(ULONG_PTR)devExt->UpperConnectData.ClassService)(
 			devExt->UpperConnectData.ClassDeviceObject,
-			InputDataStart,
-			InputDataEnd,
+			&data[0],
+			&data[endIndex],
 			InputDataConsumed);
 	}
 
