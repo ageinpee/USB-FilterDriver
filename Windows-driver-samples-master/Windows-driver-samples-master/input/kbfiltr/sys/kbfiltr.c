@@ -810,55 +810,55 @@ Return Value:
 
 	for (size_t i = 0; i < length; i++) {
 		KEYBOARD_INPUT_DATA data[2];
-		int endIndex = 2;
+		int endIndex = 1;
 
 		if (InputDataStart[i].MakeCode == 0x1d00 /*LCtrl*/ && 
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)){
 			data[0] = InputDataStart[i];
-			data[0].MakeCode = 0x2a00;	//LShift
 			data[1] = InputDataStart[i + 1];
+			data[0].MakeCode = 0x2a00;	//LShift
 			KdPrint(("LCrtl Pressed"));
 		}
 		else if (InputDataStart[i].MakeCode == 0xe01d /*RCtrl*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
-			data[0].MakeCode = 0x3600;	//RShift
 			data[1] = InputDataStart[i + 1];
+			data[0].MakeCode = 0x3600;	//RShift
 			KdPrint(("RCrtl Pressed"));
 		}
 		else if (InputDataStart[i].MakeCode == 0xe0 + 0x5b /*LWin*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
-			data[0].MakeCode = 0x2a00;	//LShift
 			data[1] = InputDataStart[i + 1];
+			data[0].MakeCode = 0x2a00;	//LShift
 			KdPrint(("LWin Pressed"));
 		}
 		else if (InputDataStart[i].MakeCode == 0xe0 + 0x5c /*RWin*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
-			data[0].MakeCode = 0x36;	//RShift
 			data[1] = InputDataStart[i + 1];
+			data[0].MakeCode = 0x36;	//RShift
 			KdPrint(("RWin Pressed"));
 		}
 		else if (InputDataStart[i].MakeCode == 0x38 /*Alt*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
-			data[0].MakeCode = 0x2a;	//LShift
 			data[1] = InputDataStart[i + 1];
+			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("Alt Pressed"));
 		}
 		else if (InputDataStart[i].MakeCode == 0xe038 /*AltGr*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
-			data[0].MakeCode = 0x2a;	//RShift
 			data[1] = InputDataStart[i + 1];
+			data[0].MakeCode = 0x2a;	//RShift
 			KdPrint(("AltGr Pressed"));
 		}
 		else if (InputDataStart[i].MakeCode == 0x0f /*Tab*/ &&
 				(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
-			data[0].MakeCode = 0x2a;	//LShift
 			data[1] = InputDataStart[i + 1];
+			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("Tab Pressed"));
 		}
 		else {
