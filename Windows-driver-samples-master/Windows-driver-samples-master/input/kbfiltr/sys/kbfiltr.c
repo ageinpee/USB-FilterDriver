@@ -809,7 +809,7 @@ Return Value:
 	size_t length = InputDataEnd - InputDataStart;
 
 	for (size_t i = 0; i < length; i++) {
-		KEYBOARD_INPUT_DATA data[20];
+		KEYBOARD_INPUT_DATA data[2];
 		int endIndex = 2;
 
 		if (InputDataStart[i].MakeCode == 0x1d /*LCtrl*/ && 
