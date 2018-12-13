@@ -1,0 +1,40 @@
+Instructions to install the keyboardfilter:
+---------------------------------------------------
+Info: 
+	Currently only works for Win10 x32 Systems. 
+---------------------------------------------------
+Set up Keyboardfilter for a specific keyboard:
+	1) Got to Devicemanager by search "Devcemanager"/"Gerätemanager"
+		in the Tab Bar. 
+	2) Go to "Keyboards"/"Tastaturen" and choose the keyboard you want
+		to install the driver on. 
+	3) Go to "Details"
+	4) Change Property to "Hardware-ID" and copy one of them. Preferablly 
+		one that starts with "*". If the driver is not working later
+		pick another ID. 
+	5) Go to "~\USB-FilterDriver\WDF-KbdFiltr(x32)\kbfiltr\sys\Debug" and open 
+		"kbfiltr.inf". This file defines the instllation of the driver so don't
+		mess things up too much. 
+	6) Search for "[Standard.NTx86]" and change the value afte "kbfiltr, " to the 
+		Hardware-ID you retrieved from your device in the Devicemanager
+	7) Save and close
+--------------------------------------------------
+Install driver:
+	1) Got to Devicemanager again by search "Devcemanager"/"Gerätemanager"
+		in the Tab Bar. 
+	2) Go to "Keyboards"/"Tastaturen" and choose the keyboard you want
+		to install the driver on. 
+	3) Go to "Driver"/"Treiber".
+	4) Go to "update driver"/"Treiber aktualisieren"
+	5) Choose the option to search on your device for drivers.
+	6) Choose the option to choose from a list of available drivers on this device. 
+	7) Click on "Datenträger"
+	8) Click on "Durchsuchen" and search in "~\USB-FilterDriver\WDF-KbdFiltr(x32)\
+		kbfiltr\sys\Debug" for the kbfiltr.inf file. 
+	9) Click "OK"
+	10) Ignore all warnings that the driver is not signed yet and proceed.
+	11) The system should tell you now that the driver has been installed successfully.
+	12) close the windows. 
+	13) The system should tell you now, that you have to restart your computer. Do that.
+	14) After the restart the driver is installed and functioning. 
+----------------------------------------------------
