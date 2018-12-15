@@ -41,7 +41,7 @@ Set up Keyboardfilter for a specific keyboard:
 
 Install driver:
 ---------------
-	1) Got to Devicemanager again by search "Devcemanager"/"Gerätemanager"
+	1) Got to Devicemanager again by search "Devicemanager"/"Gerätemanager"
 		in the Tab Bar. 
 	2) Go to "Keyboards"/"Tastaturen" and choose the keyboard you want
 		to install the driver on. 
