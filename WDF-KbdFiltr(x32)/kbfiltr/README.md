@@ -6,7 +6,67 @@
     description: A WDF example of a keyboard input filter driver.
     samplefwlink: http://go.microsoft.com/fwlink/p/?LinkId=620194
 --->
+Keyboard Input Filter for Modifier Keys
+=======================================
+This Keyboard Filter Driver is based on Microsofts Keyboard Input WDF Filter Driver sample, that is described after this paragraph. 
+The Driver currently filters the Keys: 
+- Left- and Right-Ctrl
+- Left- and Right-Windows
+- Tab
+- Alt
+- Alt-Gr
 
+Instructions to install the keyboardfilter:
+-------------------------------------------
+Info: 
+-----
+Currently only works for Win10 x32 Systems. 
+
+Set up Keyboardfilter for a specific keyboard:
+----------------------------------------------
+	1) Got to Devicemanager by search "Devcemanager"/"Gerätemanager"
+		in the Tab Bar. 
+	2) Go to "Keyboards"/"Tastaturen" and choose the keyboard you want
+		to install the driver on. 
+	3) Go to "Details"
+	4) Change Property to "Hardware-ID" and copy one of them. Preferablly 
+		one that starts with "*". If the driver is not working later
+		pick another ID. 
+	5) Go to "~\USB-FilterDriver\WDF-KbdFiltr(x32)\kbfiltr\sys\Debug" and open 
+		"kbfiltr.inf". This file defines the instllation of the driver so don't
+		mess things up too much. 
+	6) Search for "[Standard.NTx86]" and change the value afte "kbfiltr, " to the 
+		Hardware-ID you retrieved from your device in the Devicemanager
+	7) Save and close
+
+Install driver:
+---------------
+	1) Got to Devicemanager again by search "Devcemanager"/"Gerätemanager"
+		in the Tab Bar. 
+	2) Go to "Keyboards"/"Tastaturen" and choose the keyboard you want
+		to install the driver on. 
+	3) Go to "Driver"/"Treiber".
+	4) Go to "update driver"/"Treiber aktualisieren"
+	5) Choose the option to search on your device for drivers.
+	6) Choose the option to choose from a list of available drivers on this device. 
+	7) Click on "Datenträger"
+	8) Click on "Durchsuchen" and search in "~\USB-FilterDriver\WDF-KbdFiltr(x32)\
+		kbfiltr\sys\Debug" for the kbfiltr.inf file. 
+	9) Click "OK"
+	10) Ignore all warnings that the driver is not signed yet and proceed.
+	11) The system should tell you now that the driver has been installed successfully.
+	12) close the windows. 
+	13) The system should tell you now, that you have to restart your computer. Do that.
+	14) After the restart the driver is installed and functioning. 
+
+Important Links and Sources for this project:
+---------------------------------------------
+- Microsofts WDF Documentation: https://docs.microsoft.com/en-us/windows-hardware/drivers/wdf/using-the-framework-to-develop-a-driver
+- Wikipedia on Windows Driver Framework: https://en.wikipedia.org/wiki/Windows_Driver_Frameworks
+- Wikipedia on Windows Driver Model: https://en.wikipedia.org/wiki/Windows_Driver_Model
+- Microsofts Windows driver samples: https://github.com/Microsoft/Windows-driver-samples
+- KEYBOARD_INPUT_DATA structure: https://docs.microsoft.com/de-de/windows/desktop/api/ntddkbd/ns-ntddkbd-_keyboard_input_data
+- KbFilter_ServiceCallback routine: https://docs.microsoft.com/en-us/previous-versions/ff542297%28v%3dvs.85%29
 
 Keyboard Input WDF Filter Driver (Kbfiltr)
 ==========================================
