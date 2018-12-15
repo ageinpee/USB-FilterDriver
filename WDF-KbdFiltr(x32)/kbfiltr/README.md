@@ -61,6 +61,7 @@ Install driver:
 
 Important Links and Sources for this project:
 ---------------------------------------------
+- Microsoft Documentation on HID-Class Drivers: https://docs.microsoft.com/en-us/windows-hardware/drivers/hid/keyboard-and-mouse-hid-client-drivers
 - Microsofts WDF Documentation: https://docs.microsoft.com/en-us/windows-hardware/drivers/wdf/using-the-framework-to-develop-a-driver
 - Wikipedia on Windows Driver Framework: https://en.wikipedia.org/wiki/Windows_Driver_Frameworks
 - Wikipedia on Windows Driver Model: https://en.wikipedia.org/wiki/Windows_Driver_Model
