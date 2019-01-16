@@ -826,42 +826,42 @@ Return Value:
 			data[0].MakeCode = 0x36;	//RShift
 			KdPrint(("RCrtl Pressed"));
 		}
-		else if (InputDataStart[i].MakeCode == 0x5be0 /*LWin hex*/ || InputDataStart[i].MakeCode == 23520 /*LWin dec*/ &&
+		else if ((InputDataStart[i].MakeCode == 0x5be0 /*LWin hex*/ || InputDataStart[i].MakeCode == 23520 /*LWin dec*/) &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
 			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("LWin Pressed"));
 		}
-		else if (InputDataStart[i].MakeCode == 0xe05b /*maybe LWin too hex*/ || InputDataStart[i].MakeCode == 75435 /*maybe LWin too dec*/ &&
+		else if ((InputDataStart[i].MakeCode == 0xe05b /*maybe LWin too hex*/ || InputDataStart[i].MakeCode == 75435 /*maybe LWin too dec*/) &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
 			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("LWin Pressed"));
 		}
-		else if (InputDataStart[i].MakeCode == 0x5b /*maybe LWin too hex*/ || InputDataStart[i].MakeCode == 91 /*maybe LWin too dec*/ &&
+		else if ((InputDataStart[i].MakeCode == 0x5b /*maybe LWin too hex*/ || InputDataStart[i].MakeCode == 91 /*maybe LWin too dec*/) &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
 			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("LWin Pressed"));
 		}
-		else if (InputDataStart[i].MakeCode == 0x5ce0 /*RWin hex*/ || InputDataStart[i].MakeCode == 23776 /*RWin dec*/ &&
+		else if ((InputDataStart[i].MakeCode == 0x5ce0 /*RWin hex*/ || InputDataStart[i].MakeCode == 23776 /*RWin dec*/) &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
 			data[0].MakeCode = 0x36;	//RShift
 			KdPrint(("RWin Pressed"));
 		}
-		else if (InputDataStart[i].MakeCode == 0xe05c /*maybe RWin too hex*/ || InputDataStart[i].MakeCode == 75436 /*maybe RWin too dec*/ &&
+		else if ((InputDataStart[i].MakeCode == 0xe05c /*maybe RWin too hex*/ || InputDataStart[i].MakeCode == 75436 /*maybe RWin too dec*/) &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
 			data[0].MakeCode = 0x36;	//RShift
 			KdPrint(("RWin Pressed"));
 		}
-		else if (InputDataStart[i].MakeCode == 0x5c /*maybe RWin too hex*/ || InputDataStart[i].MakeCode == 92 /*maybe RWin too dec*/ &&
+		else if ((InputDataStart[i].MakeCode == 0x5c /*maybe RWin too hex*/ || InputDataStart[i].MakeCode == 92 /*maybe RWin too dec*/) &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
