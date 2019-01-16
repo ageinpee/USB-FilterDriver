@@ -829,42 +829,42 @@ Return Value:
 		//=========================================
 		//=====     Left-Win-Key Fuck up      =====
 		//=========================================
-		else if (InputDataStart[i].MakeCode == 0x5be0 /*LWin hex*/ &&
+		else if (InputDataStart[i].MakeCode == 0x5be0 || InputDataStart[i].MakeCode == 23520 /*LWin hex*/ &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
 			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("LWin Pressed"));
 		}
-		else if (InputDataStart[i].MakeCode == 0xe05b /*maybe LWin too hex*/ &&
+		else if (InputDataStart[i].MakeCode == 0xe05b || InputDataStart[i].MakeCode == 57435 /*maybe LWin too*/ &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
 			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("LWin Pressed"));
 		}
-		else if (InputDataStart[i].MakeCode == 0x5b /*maybe LWin too hex*/ &&
+		else if (InputDataStart[i].MakeCode == 0x5b || InputDataStart[i].MakeCode == 91 /*maybe LWin too*/ &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
 			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("LWin Pressed"));
 		}
-		else if (InputDataStart[i].MakeCode == 0xe01f /*maybe LWin too hex*/ &&
+		else if (InputDataStart[i].MakeCode == 0xe01f || InputDataStart[i].MakeCode == 57375 /*maybe LWin too*/ &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
 			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("LWin Pressed"));
 		}
-		else if (InputDataStart[i].MakeCode == 0x1fe0 /*maybe LWin too hex*/ &&
+		else if (InputDataStart[i].MakeCode == 0x1fe0 || InputDataStart[i].MakeCode == 8160 /*maybe LWin too*/ &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
 			data[0].MakeCode = 0x2a;	//LShift
 			KdPrint(("LWin Pressed"));
 		}
-		else if (InputDataStart[i].MakeCode == 0x1f /*maybe LWin too hex*/ &&
+		else if (InputDataStart[i].MakeCode == 0x1f || InputDataStart[i].MakeCode == 31 /*maybe LWin too*/ &&
 			(InputDataStart[i].Flags == KEY_MAKE || InputDataStart[i].Flags == KEY_BREAK)) {
 			data[0] = InputDataStart[i];
 			data[1] = InputDataStart[i + 1];
