@@ -7,7 +7,7 @@
     samplefwlink: http://go.microsoft.com/fwlink/p/?LinkId=620194
 --->
 
-eyboard Input Filter for Modifier Keys
+Keyboard Input Filter for Modifier Keys
 =======================================
 This Keyboard Filter Driver is based on Microsofts Keyboard Input WDF Filter Driver sample, that is described after this paragraph. 
 The Driver currently filters the Keys: 
